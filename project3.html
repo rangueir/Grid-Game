@@ -45,8 +45,8 @@
         }
 
         input[type="radio"] {
-            margin-right: 5px;
-            margin-left: 20px;
+            margin-right: auto;
+            margin-left: auto;
         }
 
         input[type="submit"] {
@@ -58,56 +58,67 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+
+        
     </style>
+    <script>
+        
+    </script>
 </head>
 <body>
 
     
     <div class="container">
         <h1>Team Project - Hangman</h1>
-        <form enctype="multipart/form-data" action="../cgi-bin/project3" method="post">
-            <label for="name">Enter your player name: </label>
-            <input type="text" id="name" name="name" required/><br />
-            <hr>
-            <label for="category" >Select a category: </label>
-            <input type="radio" id="animals" value="Animals" name="category" required/>Animals
+        <form enctype="multipart/form-data" action="../cgi-bin/project" method="post">
             <br />
-            <!--<label for="animals">Animals</label>-->
-            <input type="radio" id="fandd" value="Food and Drink" name="category" />Food and Drink
-            <br />
-            <input type="radio" id="city" value="Cities" name="category" />Cities
-            <br />
-            <input type="radio" id="people" value="Famous People" name="category" />Famous People
-            <br />
-            <input type="radio" id="music" value="Music" name="category" />Music
-            <br />
+            
+            <label for="name">Enter a random string: </label>
+            <input type="text" id="userinput" name="userinput" maxlength="1" size="2" required/><br />
             <hr>
             <br />
-            <!--<label for="town">Select township: </label>
-            <select name="town" id="town">
-                <option value=""> </option>
-                <option value="Union">Union</option>
-                <option value="Newark">Newark</option>
-                <option value="Edison">Edison</option>
-                <option value="Harrison">Harrison</option>
-            </select><br />-->
-            <label for="difficulty">Select difficulty: </label>
-            <input type="range" id="difficulty" name="difficulty" min="1" max="3" value="1" /><br />
+            <label for="rows">Select number of rows: </label>
+            <select name="rows" id="rows">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br />
+            <label for="cols">Select number of columns: </label>
+            <select name="cols" id="cols">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
             <hr>
-            <label for="loadfile">Upload previous save file: </label>
-            <input type="file" id="loadfile" name="loadfile" /><br />
+            
+            
+                <label for="loadfile">Upload previous save file: </label>
+                <input type="file" id="loadfile" name="loadfile" /><br />
             <hr>
-            <input type="submit" id="submit" value="Start Game!"/>
+            
+                <input type="submit" id="submit" value="Start Game!"/>
+            
         </form>
     </div>
-    
-
-    
 </body>
 </html>
