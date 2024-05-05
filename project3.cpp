@@ -22,44 +22,35 @@
 #include <cgicc/HTTPHTMLHeader.h>
 #include <cgicc/HTMLClasses.h>
 
+#include "Object.h"
+#include "functions.h"
+
 using namespace std;
 using namespace cgicc;
 
+//template<typename T>
+//void detectObjects(vector<vector<T>>& grid, int x, int y, const int width, const int height, Object& p1, int& objectCount, vector<vector<bool>>& visited) {
+//    visited[x][y] = true;
+//    grid[x][y] = p1.id;
 
-struct Object {
-    string sequence;
-    int x;
-    int y;
-    int centerX;
-    int centerY;
-    int size;
-    char id;
-};
+//    detectObjects(grid, x + 1, y, width, height, p1, objectCount, visited); // right
+//    return;
+//}
 
+//int s_to_int(const std::string& y) {
+//    return std::stoi(y);
+//}
 
-template<typename T>
-void detectObjects(vector<vector<T>>& grid, int x, int y, const int width, const int height, Object& p1, int& objectCount, vector<vector<bool>>& visited) {
-    visited[x][y] = true;
-    grid[x][y] = p1.id;
-
-    detectObjects(grid, x + 1, y, width, height, p1, objectCount, visited); // right
-    return;
-}
-
-int s_to_int(const std::string& y) {
-    return std::stoi(y);
-}
-
-bool is_notdigit(string arr) 
-{ 
-	for (int k = 0; k < arr.length(); k++) { 
-		if ((int)arr[k]<(int)'0' || 
-			(int)arr[k]>(int)'9') { 
-			return true; 
-		} 
-	} 
-	return false; 
-}
+//bool is_notdigit(string arr) 
+//{ 
+//	for (int k = 0; k < arr.length(); k++) { 
+//		if ((int)arr[k]<(int)'0' || 
+//			(int)arr[k]>(int)'9') { 
+//			return true; 
+//		} 
+//	} 
+//	return false; 
+//}
 
 int main() {
 
@@ -122,7 +113,7 @@ int main() {
 
     Object p1;
     srand(time(0));
-    vector<vector<char>> mdarray(numrows, vector<char>(numcols));
+    vector<vector<char> > mdarray(numrows, vector<char>(numcols));
     for(int i = 0; i < numrows; i++){
         for(int j = 0; j < numcols; j++){
             
@@ -146,7 +137,7 @@ int main() {
     }
     cout << "</table>";
     
-    vector<vector<char>> textGrid(mdarray.size());
+    vector<vector<char> > textGrid(mdarray.size());
     for (int i = 0; i < mdarray.size(); i++) {
         textGrid[i].resize(mdarray[i].size());
         for (int j = 0; j < mdarray[i].size(); j++) {
@@ -161,8 +152,8 @@ int main() {
     cout << "Height: " << numrows << ", Width: " << numcols << "<br>";
     cout << "<br>";
     
-    vector<vector<float>> details;
-    vector<vector<bool>> visited(mdarray.size(), vector<bool>(mdarray[0].size(), false));
+    vector<vector<float> > details;
+    vector<vector<bool> > visited(mdarray.size(), vector<bool>(mdarray[0].size(), false));
 
     int objectCount = 1;
     cout << "<table class='center'>";
