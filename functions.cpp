@@ -93,7 +93,7 @@ void searchAndMarkPattern(vector<vector<char>>& textGrid, const string& input, i
         cout << "<br>";
         cout << "Your guess is " << userinput;
         cout << "<br>";
-        cout << "There are " << objectCount - 1 << ", " << input << "'s characters!";
+        cout << "There are " << objectCount - 1 << ", " << input << " characters!";
 
         if(userinput == objectCount - 1){
                 cout << "<br>";
