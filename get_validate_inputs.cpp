@@ -297,12 +297,12 @@ void processInputs(const string& game, const string& option, const Cgicc& cgi){
             h.push_back(value);
         }
 
-        p3.x = h[0];
-        p3.y = h[1];
+        p3.x = h[0] + 1;
+        p3.y = h[1] - 1;
 
         vector<vector<char>> matcharray(p3.x + 1, vector<char>(p3.y + 1));
 
-        cout << "Height: " << p3.x << ", Width: " << p3.y << "<br>";
+        cout << "Height: " << p3.x - 1 << ", Width: " << p3.y + 1  << "<br>";
         cout << "<br>";
         int r = 0;
         for(int i = 0; i <= p3.x; ++i){
@@ -314,9 +314,9 @@ void processInputs(const string& game, const string& option, const Cgicc& cgi){
             }
         }
         cout << "<table class='center'>";
-        for(int i = 0; i <= p3.x; i++){
+        for(int i = 0; i <= p3.x; ++i){
             cout << "<tr>";
-            for(int j = 0; j <= p3.y; j++){
+            for(int j = 0; j <= p3.y; ++j){
 
                 cout << "<td>" << matcharray[i][j] << "</td>";
                 
@@ -335,7 +335,7 @@ void processInputs(const string& game, const string& option, const Cgicc& cgi){
             }
         }
 
-        if(mnumrows == p3.x && mnumcols == p3.y){
+        if(mnumrows == p3.x - 1 && mnumcols == p3.y + 1){
             displayMatchingValuesAtSamePosition(textGrid, mfileGrid);
         }else{
             cout << "<br>";
