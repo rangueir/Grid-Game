@@ -1,16 +1,14 @@
-
 <!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Team Project - Hangman</title>
+    <title>Team Project - Grid Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f2f2f2;
+            background-color: #b2b2b2;
         }
         
         .container {
@@ -27,9 +25,13 @@
             text-align: center;
         }
 
+        .container img {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         label {
-            display: block;
-            font-weight: bold;
+            display: inline;
             margin-bottom: 5px;
         }
 
@@ -45,13 +47,12 @@
         }
 
         input[type="radio"] {
-            margin-right: auto;
-            margin-left: auto;
+            margin-right: 5px;
         }
 
         input[type="submit"] {
             width: 50%;
-            background-color: #4CAF50;
+            background-color: #f44788;
             color: white;
             padding: 12px 20px;
             border: none;
@@ -60,65 +61,146 @@
             font-size: 16px;
             margin-left: auto;
             margin-right: auto;
+            display: block;
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #f44750;
         }
-
-        
     </style>
     <script>
-        
+        function showOptions(selectedValue) {
+            var countDiv = document.getElementById("countDiv");
+            var matchDiv = document.getElementById("matchDiv");
+            var rowsDiv = document.getElementById("rowsDiv");
+            var uploadDiv = document.getElementById("uploadDiv");
+
+            // Hide all divs
+            countDiv.style.display = "none";
+            matchDiv.style.display = "none";
+            rowsDiv.style.display = "none";
+            uploadDiv.style.display = "none";
+
+            // Show the div corresponding to the selected value
+            if (selectedValue === "count") {
+                countDiv.style.display = "block";
+            } else if (selectedValue === "match") {
+                matchDiv.style.display = "block";
+            } else if (selectedValue === "rows") {
+                rowsDiv.style.display = "block";
+                countDiv.style.display = "block";
+            } else if (selectedValue === "upload") {
+                uploadDiv.style.display = "block";
+                countDiv.style.display = "block";
+            }
+        }
     </script>
 </head>
 <body>
-
-    
     <div class="container">
-        <h1>Team Project - Hangman</h1>
-        <form enctype="multipart/form-data" action="../../cgi-bin/project3" method="post">
+        
+        <h1>Team 1 - Grid Game</h1>
+        <form enctype="multipart/form-data" action="../cgi-bin/main" method="post">
             <br />
-            
-            <label for="name">Enter a random string: </label>
-            <input type="text" id="userinput" name="userinput" maxlength="1" size="2" required/><br />
+            <label>Select a game below:</label><br />
+            <input type="radio" name="game" id="countOption" value="count" onchange="showOptions(this.value)">
+            <label for="countOption">Counter</label><br>
+            <input type="radio" name="game" id="matchOption" value="match" onchange="showOptions(this.value)">
+            <label for="matchOption">Match</label><br>
+            <div id="countDiv" style="display: none;">
+                <hr>
+                <label>Select an option below:</label><br />
+                <input type="radio" name="option" id="rowsOption" value="rows" onchange="showOptions(this.value)">
+                <label for="rowsOption">Generate a random grid game</label><br>
+                <input type="radio" name="option" id="uploadOption" value="upload" onchange="showOptions(this.value)">
+                <label for="uploadOption">Upload a pre-made grid game file</label><br>
+                <div id="rowsDiv" style="display: none;">
+                    <hr>
+                    <label for="rows">Select number of rows: </label>
+                    <select name="rows" id="rows">
+                        <option value=""></option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <br>
+                    <label for="cols">Select number of columns: </label>
+                    <select name="cols" id="cols">
+                        <option value=""></option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <br>
+                    <label for="charinput">Enter a random character: </label>
+                    <input type="text" id="charinput" name="charinput" maxlength="1" size="2"/><br />
+                    <label for="intinput">Enter the number of times you think this character will show up: </label>
+                    <input type="number" id="intinput" name="intinput" maxlength="1" size="2"/><br />
+                </div>
+                
+                <div id="uploadDiv" style="display: none;">
+                    <hr>
+                    <label for="loadfile">Search for file here: </label>
+                    <input type="file" id="loadfile" name="loadfile" /><br />
+                    <label for="ucharinput">Enter a random character: </label>
+                    <input type="text" id="ucharinput" name="ucharinput" maxlength="1" size="2"/><br />
+                    <label for="uintinput">Enter the number of times you think this character will show up: </label>
+                    <input type="number" id="uintinput" name="uintinput" maxlength="1" size="2"/><br />
+                </div>
+            </div>
+            <div id="matchDiv" style="display: none;">
+                    <hr>
+                    <label for="matchrows">Select number of rows: </label>
+                    <select name="matchrows" id="matchrows">
+                        <option value=""></option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <br>
+                    <label for="matchcols">Select number of columns: </label>
+                    <select name="matchcols" id="matchcols">
+                        <option value=""></option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <hr>
+                    <label for="matchloadfile">Search for file here: </label>
+                    <input type="file" id="matchloadfile" name="matchloadfile" /><br />
+            </div>
             <hr>
-            <br />
-            <label for="rows">Select number of rows: </label>
-            <select name="rows" id="rows">
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-            <br />
-            <label for="cols">Select number of columns: </label>
-            <select name="cols" id="cols">
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-            <hr>
-            
-            
-                <label for="loadfile">Upload previous save file: </label>
-                <input type="file" id="loadfile" name="loadfile" /><br />
-            <hr>
-            
-                <input type="submit" id="submit" value="Start Game!"/>
-            
+            <input type="submit" id="submit" value="Start Game!"/>
         </form>
     </div>
+    <script>
+        window.onload = function() {
+            keepOptionsVisible();
+        };
+    </script>
 </body>
 </html>

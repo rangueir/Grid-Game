@@ -1,5 +1,7 @@
-ompilation
-g++ -c -Wall -Wextra -std=c++11 functions.cpp project3.cpp
+# Compilation
+g++ -c -Wall -Wextra -std=c++11 functions.cpp get_validate_inputs.cpp main.cpp
 
 # Linking
-g++ -o project3 functions.o project3.o
+g++ -o main functions.o get_validate_inputs.o main.o -lcgicc
+
+chmod 705 main
